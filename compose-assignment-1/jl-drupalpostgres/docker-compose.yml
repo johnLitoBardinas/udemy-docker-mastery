@@ -1,0 +1,32 @@
+version: '3.1'
+
+volumes:
+  drupal_modules:
+  drupal_procfiles:
+  drupal_themes:
+  drupal_sites:
+
+services:
+  drupal:
+    image: drupal:8-apache
+    ports:
+      - 8080:80
+    volumes:
+      - drupal_modules:/var/www/html/modules:ro
+      - drupal_procfiles:/var/www/html/profiles:ro
+      - drupal_themes:/var/www/html/themes:ro
+      - drupal_sites:/var/www/html/sites
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD:postgress
+    restart: always
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:10
+    environment:
+      POSTGRES_PASSWORD: postgress
+    restart: always
+# 4:19 Mark my word iam gonna be must better than all of you arrogant pricks all of you just watch me build billions
