@@ -2,6 +2,7 @@ version: '2'
 
 services:
   drupal:
+    image: custom-drupal
     build:
       context: .
       dockerfile: Dockerfile
