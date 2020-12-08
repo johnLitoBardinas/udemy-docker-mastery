@@ -6,11 +6,12 @@ version: '2'
 services:
   proxy:
     build:
-      context: .
-      dockerfile: nginx.Dockerfile
+      context: . # In this location . where is the root here is the dockerfile for this image container
+      dockerfile: nginx.Dockerfile # Build Custom Docker IMage in this file
+    # image: nginx-image
     ports:
       - '80:80'
   web:
     image: httpd
     volumes:
-      - ./html:/usr/local/apache2/htdocs/
+      - ./html:/usr/local/apache2/htdocs/ # Bind Mounting technique
